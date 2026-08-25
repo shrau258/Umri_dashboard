@@ -1,0 +1,455 @@
+/* Dashboard-only refinement layer. Keeps the existing theme and application logic intact. */
+.scada {
+  --type-label: clamp(0.48rem, 0.18vw + 0.34rem, 0.62rem);
+  --type-body: clamp(0.56rem, 0.16vw + 0.43rem, 0.7rem);
+  --type-title: clamp(0.64rem, 0.2vw + 0.48rem, 0.82rem);
+  --type-value: clamp(0.94rem, 0.42vw + 0.58rem, 1.28rem);
+}
+
+/* Consistent panel and KPI hierarchy */
+.scada .panel h3 {
+  min-height: 1.75rem;
+  height: 1.75rem;
+  padding-inline: clamp(0.5rem, 0.55vw, 0.75rem);
+  font-size: var(--type-title);
+  line-height: 1;
+  letter-spacing: 0.015em;
+}
+
+.scada .topstat small,
+.scada .metric p,
+.scada .header-alarm small {
+  font-size: var(--type-label);
+  line-height: 1.15;
+}
+
+.scada .topstat b {
+  font-size: clamp(1.05rem, 0.65vw + 0.45rem, 1.42rem);
+  line-height: 1;
+}
+
+.scada .topstat em,
+.scada .metric b small {
+  font-size: 0.58em;
+  line-height: 1;
+}
+
+.scada .metric {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  min-height: 3rem;
+  padding: clamp(0.35rem, 0.45vw, 0.55rem);
+}
+
+.scada .metric > div:first-child {
+  min-width: 0;
+}
+
+.scada .metric p {
+  overflow: hidden;
+  margin-bottom: 0.18rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.scada .metric b,
+.scada .metric-grid .metric:nth-child(3) b {
+  font-size: var(--type-value);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.scada .micro-grid .metric {
+  min-height: 2.75rem;
+}
+
+.scada .micro-grid .metric p {
+  font-size: var(--type-label);
+}
+
+.scada .micro-grid .metric b {
+  font-size: clamp(0.78rem, 0.28vw + 0.55rem, 1rem);
+}
+
+/* One internal grid keeps the icon, value, and unit safely inside the ring. */
+.scada .dashboard-wms .dashboard-gauge {
+  position: relative;
+  display: grid !important;
+  grid-template-rows: 1fr auto auto 1fr;
+  flex: none;
+  align-items: center;
+  justify-items: center;
+  width: clamp(4.5rem, 4.35vw, 5rem);
+  height: clamp(4.5rem, 4.35vw, 5rem);
+  padding: clamp(0.42rem, 0.45vw, 0.55rem);
+  overflow: hidden;
+}
+
+.scada .dashboard-wms .dashboard-gauge > svg {
+  position: static !important;
+  grid-row: 2;
+  top: auto !important;
+  width: 1rem;
+  height: 1rem;
+  margin: 0 0 0.08rem;
+  z-index: 2;
+}
+
+.scada .dashboard-wms .gauge-reading {
+  position: static;
+  grid-row: 3;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.05rem;
+  padding: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.scada .dashboard-wms .gauge-reading b {
+  margin: 0;
+  color: #f0fbff;
+  font: 700 clamp(0.82rem, 0.34vw + 0.55rem, 1.05rem)/1 Rajdhani, Roboto, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.scada .dashboard-wms .gauge-reading small {
+  position: static;
+  color: #8cc7da;
+  font: 700 clamp(0.42rem, 0.12vw + 0.34rem, 0.54rem)/1.1 Rajdhani, Roboto, sans-serif;
+  white-space: nowrap;
+}
+
+.scada .dashboard-wms .dashboard-wms-top {
+  grid-template-columns: minmax(4.8rem, auto) minmax(7.5rem, 1fr) minmax(8.5rem, 1.15fr);
+  gap: clamp(0.4rem, 0.55vw, 0.75rem);
+  padding: 0.45rem 0.6rem;
+}
+
+.scada .gauge-caption span,
+.scada .gauge-caption small,
+.scada .dashboard-wms-status span {
+  font-size: var(--type-label);
+  line-height: 1.2;
+}
+
+.scada .gauge-caption b,
+.scada .dashboard-wms-status b {
+  font-size: var(--type-body);
+}
+
+/* WMS columns and rows share one alignment/rhythm at both stations. */
+.scada .dashboard-wms-table {
+  padding: 0.25rem 0.45rem 0.3rem;
+}
+
+.scada .dashboard-wms-table > div {
+  grid-template-columns: minmax(7.5rem, 1.2fr) repeat(3, minmax(6.5rem, 1fr));
+  column-gap: clamp(0.45rem, 0.75vw, 0.85rem);
+  width: 100%;
+  min-height: clamp(1.3rem, 2vh, 1.55rem);
+  padding: 0.12rem 0.25rem;
+  font-size: var(--type-body) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.scada .dashboard-wms-table > div:first-child {
+  font-size: var(--type-label) !important;
+}
+
+.scada .dashboard-wms-table > div > * {
+  text-align: left;
+}
+
+.scada .dashboard-wms-table b {
+  font-size: var(--type-body) !important;
+  text-align: left;
+}
+
+.scada .dashboard-wms-table small {
+  font-size: 0.82em !important;
+  white-space: nowrap;
+}
+
+.scada .dashboard-environment span {
+  min-width: 0;
+  padding: 0.35rem 0.5rem;
+  font-size: var(--type-label) !important;
+  line-height: 1.1;
+}
+
+.scada .dashboard-environment b {
+  overflow: hidden;
+  margin-top: 0.15rem;
+  font-size: var(--type-body) !important;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Compact, readable Plant Summary with predictable numeric alignment. */
+.scada .plant-summary {
+  min-height: 0;
+}
+
+.scada .plant-summary table {
+  table-layout: fixed;
+  font-variant-numeric: tabular-nums;
+}
+
+.scada .plant-summary th {
+  height: clamp(1.55rem, 2.5vh, 1.85rem);
+  padding: 0.18rem 0.32rem;
+  font-size: var(--type-label);
+  line-height: 1.05;
+  vertical-align: middle;
+}
+
+.scada .plant-summary td {
+  height: clamp(1.45rem, 2.25vh, 1.72rem);
+  padding: 0.18rem 0.38rem;
+  font-size: var(--type-body);
+  line-height: 1;
+}
+
+.scada .plant-summary th:nth-child(2),
+.scada .plant-summary td:nth-child(2) {
+  width: 22%;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+
+.scada .plant-summary th:nth-child(n+3):nth-child(-n+8),
+.scada .plant-summary td:nth-child(n+3):nth-child(-n+8) {
+  text-align: right;
+}
+
+.scada .plant-summary .status {
+  font-size: var(--type-label);
+  white-space: nowrap;
+}
+
+.scada .plant-summary tfoot td {
+  height: 2rem;
+  font-size: clamp(0.62rem, 0.18vw + 0.48rem, 0.76rem);
+}
+
+/* Chart and status labels remain legible without increasing panel height. */
+.scada .chart,
+.scada .generation-detail {
+  height: clamp(13rem, 20vh, 13.75rem) !important;
+  min-height: 0;
+  align-self: stretch;
+}
+
+.scada .chart .recharts-responsive-container {
+  height: calc(100% - 1.75rem) !important;
+}
+
+.scada .generation-detail .recharts-responsive-container {
+  height: calc(100% - 4rem) !important;
+}
+
+.scada .chart-kpi {
+  font-size: clamp(0.82rem, 0.3vw + 0.58rem, 1.05rem);
+}
+
+.scada .generation-summary {
+  min-height: 2.25rem;
+  font-size: var(--type-label);
+}
+
+.scada .generation-summary span b {
+  font-size: clamp(0.72rem, 0.25vw + 0.52rem, 0.96rem);
+}
+
+.scada .status-bar .alarmbox span,
+.scada .status-bar .event,
+.scada .status-block span {
+  font-size: var(--type-label);
+}
+
+.scada .status-block b {
+  font-size: clamp(0.82rem, 0.25vw + 0.62rem, 1rem);
+}
+
+@media (min-width: 901px) {
+  .scada .content {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  .scada .dashboard-wms .dashboard-wms-top {
+    grid-template-columns: 4.6rem minmax(6.4rem, 1fr);
+  }
+
+  .scada .dashboard-wms-status {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .scada .plant-summary th,
+  .scada .plant-summary td {
+    padding-inline: 0.2rem;
+  }
+}
+
+@media (max-height: 860px) and (min-width: 901px) {
+  .scada {
+    padding-top: 0.3rem !important;
+    padding-bottom: 3.6rem !important;
+  }
+
+  .scada .top {
+    height: 2.7rem;
+  }
+
+  .scada .content {
+    grid-template-rows: 7.6rem 20.1rem 10rem;
+  }
+
+  .scada .overview,
+  .scada .plant-summary {
+    min-height: 0;
+    height: auto;
+  }
+
+  .scada .weather-row .weather,
+  .scada .dashboard-wms {
+    min-height: 0 !important;
+  }
+
+  .scada .metric-grid {
+    gap: 0.25rem;
+    padding: 0.3rem;
+  }
+
+  .scada .metric-grid .metric {
+    min-height: 2.25rem;
+    padding: 0.28rem 0.38rem;
+  }
+
+  .scada .micro-grid {
+    gap: 0.22rem;
+    padding: 0 0.3rem 0.3rem;
+  }
+
+  .scada .micro-grid .metric {
+    min-height: 2rem;
+    padding: 0.25rem 0.32rem;
+  }
+
+  .scada .kpi-gauge {
+    width: 1.9rem;
+    height: 1.9rem;
+  }
+
+  .scada .plant-summary th {
+    height: 1.35rem;
+  }
+
+  .scada .plant-summary td {
+    height: 1.1rem;
+    padding-block: 0.08rem;
+  }
+
+  .scada .plant-summary tbody tr {
+    height: 1.1rem !important;
+  }
+
+  .scada .plant-summary tfoot td {
+    height: 1.55rem;
+  }
+
+  .scada .dashboard-wms {
+    min-height: 10rem !important;
+    grid-template-rows: 1.75rem 3.9rem minmax(0, 1fr) 1.8rem !important;
+  }
+
+  .scada .dashboard-wms .dashboard-wms-top {
+    padding-block: 0.2rem;
+  }
+
+  .scada .dashboard-wms .dashboard-gauge {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .scada .dashboard-wms .dashboard-gauge > svg {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .scada .dashboard-wms .gauge-reading {
+    padding: 0;
+  }
+
+  .scada .dashboard-wms-table {
+    padding-block: 0.12rem;
+  }
+
+  .scada .dashboard-wms-table > div {
+    min-height: 1.08rem;
+    padding-block: 0.08rem;
+  }
+
+  .scada .dashboard-environment span {
+    padding-block: 0.16rem;
+  }
+
+  .scada .chart {
+    height: 10rem;
+  }
+
+  .scada .generation-detail {
+    height: 10rem !important;
+  }
+
+  .scada .chart .recharts-responsive-container {
+    height: calc(100% - 1.8rem) !important;
+  }
+
+  .scada .generation-detail .recharts-responsive-container {
+    height: calc(100% - 4rem) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .scada .dashboard-wms .dashboard-wms-top {
+    grid-template-columns: 5rem minmax(8rem, 1fr) minmax(10rem, 1.1fr);
+  }
+
+  .scada .dashboard-wms-status {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .scada .dashboard-environment {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .scada .dashboard-wms .dashboard-wms-top {
+    grid-template-columns: 4.6rem minmax(0, 1fr);
+  }
+
+  .scada .dashboard-wms-status {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .scada .dashboard-wms-table {
+    overflow-x: auto;
+  }
+
+  .scada .dashboard-wms-table > div {
+    min-width: 27rem;
+  }
+}
